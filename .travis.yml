@@ -1,6 +1,6 @@
-language: ubuntu
-ubuntu:
-  - latest
+dist: xenial
+os:
+  - linux
 
 services:
   - docker
@@ -14,7 +14,9 @@ before_script:
 script:
   - cd action-a
   - docker build -t actions-demo .
+  - echo $DOCKER_USERNAME
   - docker tag actions-demo ${DOCKER_USERNAME}/actions-demo:latest
+  - docker image ls
 
 after_success:
   - echo ${DOCKER_PASS} | docker login -u $DOCKER_USER --password-stdin

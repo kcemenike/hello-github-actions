@@ -12,6 +12,7 @@ before_script:
   - echo "before script"
 
 script:
+  - cd action-a
   - docker build -t actions-demo .
   - docker tag js-demo $DOCKER_USERNAME/actions-demo:latest
 

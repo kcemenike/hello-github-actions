@@ -1,0 +1,20 @@
+language: ubuntu
+ubuntu:
+  - latest
+
+services:
+  - docker
+
+install:
+  - echo "install"
+
+before_script:
+  - echo "before script"
+
+script:
+  - docker build -t actions-demo .
+  - docker tag js-demo $DOCKER_USERNAME/actions-demo:latest
+
+after_success:
+  - echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+  - docker push $DOCKER_USERNAME/js-demo

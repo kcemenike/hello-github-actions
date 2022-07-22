@@ -14,8 +14,8 @@ before_script:
 script:
   - cd action-a
   - docker build -t actions-demo .
-  - docker tag actions-demo $DOCKER_USERNAME/actions-demo:latest
+  - docker tag actions-demo ${DOCKER_USERNAME}/actions-demo:latest
 
 after_success:
-  - echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-  - docker push $DOCKER_USERNAME/actions-demo
+  - echo ${DOCKER_PASS} | docker login -u $DOCKER_USER --password-stdin
+  - docker push ${DOCKER_USERNAME}/actions-demo

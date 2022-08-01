@@ -4,7 +4,9 @@ x-aws-loadbalancer: "sgs-prod"
 
 services:
   sgs-async-socket-server:
-    image: 279065426062.dkr.ecr.us-east-2.amazonaws.com/sgs-async-socket-server
+    # image: 279065426062.dkr.ecr.us-east-2.amazonaws.com/sgs-async-socket-server
+    image: kcemenike/actions-demo
+
     deploy:
       mode: replicated
       replicas: 1

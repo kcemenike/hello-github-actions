@@ -11,6 +11,11 @@ phases:
   build:
     commands:
       - docker images
+      - docker compose version
+      - docker version
       # - docker run scalexa echo "Hello, World!"
       - docker compose -f docker-compose.yml up -d
       - docker compose -f docker-compose.aws.prod.yml up -d
+      - docker-compose up docker-compose.yml -d
+      - docker-compose up docker-compose.aws.prod.yml up -d
+      - docker images ls

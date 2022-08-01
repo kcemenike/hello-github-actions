@@ -1,0 +1,52 @@
+{
+    "name": "Scalexa-code-build",
+    "description": "Testing the mic",
+    "source": {
+        "type": "GITHUB",
+        "location": "https://github.com/kcemenike/hello-github-actions",
+        "gitCloneDepth": 0,
+        "gitSubmodulesConfig": {
+            "fetchSubmodules": true
+        },
+        "buildspec": "",
+        "auth": {
+            "type": "",
+            "resource": ""
+        },
+        "reportBuildStatus": true,
+        "buildStatusConfig": {
+            "context": "",
+            "targetUrl": ""
+        },
+        "insecureSsl": true,
+        "sourceIdentifier": ""
+    },
+    "sourceVersion": "",
+    "artifacts": {
+        "type": "NO_ARTIFACTS",
+        "location": "",
+        "path": "",
+        "namespaceType": "NONE",
+        "name": "",
+        "packaging": "NONE",
+        "overrideArtifactName": true,
+        "encryptionDisabled": true,
+        "artifactIdentifier": "",
+        "bucketOwnerAccess": "FULL"
+    },
+    "cache": {
+        "type": "NO_CACHE",
+        "location": "",
+        "modes": [
+            "LOCAL_SOURCE_CACHE"
+        ]
+    },
+    "environment": {
+        "type": "ARM_CONTAINER",
+        "image": "aws/codebuild/amazonlinux2-x86_64-standard:4.0",
+        "computeType": "BUILD_GENERAL1_SMALL",
+        "privilegedMode": true
+    },
+    "serviceRole": "arn:aws:iam::360782791261:role/AWSCodePipelineServiceRole-us-east-2-lab",
+    "badgeEnabled": true
+}

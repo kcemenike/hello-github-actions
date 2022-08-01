@@ -3,14 +3,15 @@ version: 0.2
 phases:
   install:
     commands:
-      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
-      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
-  # pre_build:
-  #   commands:
-  #     - docker build -t scalexa action-a/.
-  build:
+      # - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+      # - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - curl -L --no-progress-meter --output /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64
+      - sudo chmod +x /usr/local/bin/docker-compos
+  pre_build:
     commands:
       - docker images
+  build:
+    commands:
       # - docker compose version
       - docker version
       # - docker run scalexa echo "Hello, World!"

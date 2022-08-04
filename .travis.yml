@@ -12,11 +12,11 @@ before_script:
   - echo "before script"
 
 script:
-  - cd action-a
-  - docker build -t actions-demo .
-  - echo $DOCKER_USERNAME
-  - docker tag actions-demo $DOCKER_USERNAME/actions-demo:latest
-  - docker image ls
+  - echo Build started on `date`
+  - echo Building the Docker image...
+  - docker build -t simple-node ."
+  - docker tag simple-node $DOCKER_USERNAME/simple-node:latest`
+  - docker tag simple-node $DOCKER_USERNAME/simple-node:`date +%y.%m`
 
 after_success:
   - echo $DOCKER_PASS | docker login -u $DOCKER_USERNAME --password-stdin

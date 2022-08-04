@@ -1,22 +1,22 @@
-version: 0.2
-
+---
+version: 0.1
+env:
+  parameter-store:
+    DOCKER_PASSWORD: /CodeBuild/DOCKER_PASSWORD
 phases:
-  install:
-    commands:
-      # - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
-      # - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
-      - curl -L --no-progress-meter --output /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64
-      - sudo chmod +x /usr/local/bin/docker-compose
   pre_build:
     commands:
-      - docker images
+      - echo Logging in to Docker Hub...
+      - echo $DOCKER_PASSWORD | docker login -u kcemenike --password-stdin
   build:
     commands:
-      # - docker compose version
-      - docker version
-      # - docker run scalexa echo "Hello, World!"
-      # - docker compose -f docker-compose.yml up -d
-      # - docker compose -f docker-compose.aws.prod.yml up -d
-      - docker-compose up docker-compose.yml -d
-      - docker-compose up docker-compose.aws.prod.yml up -d
-      - docker images ls
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t simple-node .
+      - docker tag simple-node kcemenike/simple-node:latest`
+      - docker tag simple-node kcemenike/simple-node:`date +%y.%m`
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push kcemenike/simple-node:latest
